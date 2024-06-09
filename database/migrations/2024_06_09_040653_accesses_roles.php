@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('accesses_roles', function (Blueprint $table) {
-            $table->id();
+            $table->id('access_role_id');
             $table->foreignId('access_id')->references('access_id')->on('accesses')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('role_id')->references('role_id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

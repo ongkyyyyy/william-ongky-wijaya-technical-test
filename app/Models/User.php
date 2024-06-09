@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -21,7 +23,16 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
+        'username',
         'password',
+        'primary_phone',
+        'avatar',
+        'application_id',
+        'custom_data',
+        'identities',
+        'last_sign_in_at',
+        'is_suspended'
     ];
 
     /**
@@ -32,6 +43,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'custom_data' => 'json',
+        'identities' => 'json',
+        'last_sign_in_at' => 'datetime',
+        'is_suspended' => 'boolean',
     ];
 
     /**
@@ -45,5 +64,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function personalIdentity() : HasOne
+    {
+        return $this->hasOne(PersonalIdentity::class, 'users_id');
+    }
+
+    public function userAccesses(): HasMany
+    {
+        return $this->hasMany(UserAccess::class, 'user_acess_id');
     }
 }

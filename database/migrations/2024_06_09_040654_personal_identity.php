@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('kelurahan_desa')->nullable();
             $table->string('kewarganegaraan')->nullable();
             $table->string('kota_kabupaten')->nullable();
-            $table->string('nama')->nullable();
+            $table->string('nama_ktp')->nullable();
             $table->string('nik')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('provinsi')->nullable();
