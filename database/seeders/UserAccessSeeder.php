@@ -13,7 +13,7 @@ class UserAccessSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users_accesses')->insert([
+        DB::table('user_accesses')->insert([
             [
                 'users_id' => 1,
                 'access_id' => 1,

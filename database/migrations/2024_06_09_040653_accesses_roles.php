@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('accesses_roles', function (Blueprint $table) {
+        Schema::create('access_roles', function (Blueprint $table) {
             $table->id('access_role_id');
             $table->foreignId('access_id')->references('access_id')->on('accesses')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('role_id')->references('role_id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('accesses_roles');
+        Schema::dropIfExists('access_roles');
     }
 };

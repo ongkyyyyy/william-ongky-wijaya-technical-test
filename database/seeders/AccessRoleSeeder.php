@@ -13,7 +13,7 @@ class AccessRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('accesses_roles')->insert([
+        DB::table('access_roles')->insert([
             [
                 'access_id' => 1,
                 'role_id' => 1,

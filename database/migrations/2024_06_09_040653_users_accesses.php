@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('users_accesses', function (Blueprint $table) {
+        Schema::create('user_accesses', function (Blueprint $table) {
             $table->id('user_access_id');
             $table->foreignId('users_id')->references('users_id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('access_id')->references('access_id')->on('accesses')->onUpdate('cascade')->onDelete('cascade');
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('users_accesses');
+        Schema::dropIfExists('user_accesses');
     }
 };
