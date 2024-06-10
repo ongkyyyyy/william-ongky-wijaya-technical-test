@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idt_personals', function (Blueprint $table) {
-            $table->id('idt_personal_id');
+        Schema::create('personal_identities', function (Blueprint $table) {
+            $table->id('personal_identity_id');
             $table->foreignId('users_id')->references('users_id')->on('users')->onDelete('cascade');
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
