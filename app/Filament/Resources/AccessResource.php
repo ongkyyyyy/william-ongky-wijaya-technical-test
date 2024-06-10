@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\AccessResource\Pages;
@@ -38,7 +39,8 @@ class AccessResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('access_name')->sortable()->searchable(),
+                TextColumn::make('access_description'),
             ])
             ->filters([
                 //

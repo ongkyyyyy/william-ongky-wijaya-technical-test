@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
-use App\Models\User;
+use App\Models\Role;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -12,13 +12,13 @@ use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers;
+use App\Filament\Resources\RoleResource\RelationManagers;
 
-class UserResource extends Resource
+class RoleResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -28,11 +28,8 @@ class UserResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('name'),
-                        TextInput::make('email')->unique(),
-                        TextInput::make('password')
-                            ->type('password')
-                            ->autocomplete('new-password'),
+                        TextInput::make('role_name'),
+                        TextInput::make('role_description'),
                     ])
                     ->columns(2),
             ]);
@@ -42,9 +39,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('email'),
-                TextColumn::make('created_at'),
+                TextColumn::make('role_name')->sortable()->searchable(),
+                TextColumn::make('role_description'),
             ])
             ->filters([
                 //
@@ -70,9 +66,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListRoles::route('/'),
+            'create' => Pages\CreateRole::route('/create'),
+            'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
     }
 }
