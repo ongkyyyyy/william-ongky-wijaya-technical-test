@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AccessRole extends Model
+class AccessRoles extends Model
 {
     use HasFactory;
 
@@ -16,12 +16,12 @@ class AccessRole extends Model
         'role_id'
     ];
 
-    public function access() : belongsTo
+    public function access()
     {
         return $this->belongsTo(Access::class, 'access_id');
     }
 
-    public function role() : belongsTo
+    public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
     }

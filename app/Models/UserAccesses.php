@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserAccess extends Model
+class UserAccesses extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'access_user_id';
+    protected $primaryKey = 'user_access_id';
 
     protected $fillable = [
         'users_id',
         'access_id'
     ];
 
-    public function user() : belongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function access() : belongsTo
+    public function access()
     {
         return $this->belongsTo(Access::class, 'access_id');
     }
