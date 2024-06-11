@@ -8,6 +8,7 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use App\Filament\Auth\CustomLogin;
 use Filament\Support\Colors\Color;
+use App\Filament\Auth\CustomRegister;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -26,8 +27,8 @@ class UserPanelProvider extends PanelProvider
         return $panel
             ->id('user')
             ->path('user')
-            ->login()
-            ->registration()
+            ->login(CustomLogin::class)
+            ->registration(CustomRegister::class)
             ->colors([
                 'primary' => Color::Emerald,
             ])

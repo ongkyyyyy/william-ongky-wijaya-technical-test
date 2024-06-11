@@ -8,6 +8,7 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use App\Filament\Auth\CustomLogin;
 use Filament\Support\Colors\Color;
+use App\Filament\Auth\CustomLoginAdmin;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -27,8 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login(CustomLogin::class)
-            ->registration()
+            ->login(CustomLoginAdmin::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

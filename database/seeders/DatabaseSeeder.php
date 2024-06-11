@@ -8,8 +8,9 @@ use App\Models\Access;
 use App\Models\Permission;
 use App\Models\UserAccess;
 use App\Models\RolePermission;
-use Database\Seeders\AccessRoleSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\AccessRoleSeeder;
+use Database\Seeders\PersonalIdentitySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             UserAccessSeeder::class,
             AccessRoleSeeder::class,
             RolePermissionSeeder::class,
+            PersonalIdentitySeeder::class,
         ]);
     }
 }
