@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PersonalIdentityResource\Pages;
-use App\Filament\Resources\PersonalIdentityResource\RelationManagers;
-use App\Models\PersonalIdentity;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\PersonalIdentity;
+use Filament\Resources\Resource;
+use Forms\Components\FileUpload;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PersonalIdentityResource\Pages;
+use App\Filament\Resources\PersonalIdentityResource\RelationManagers;
 
 class PersonalIdentityResource extends Resource
 {
@@ -40,7 +42,7 @@ class PersonalIdentityResource extends Resource
                 TextInput::make('rt_rw'),
                 TextInput::make('status_perkawinan'),
                 TextInput::make('tanggal_lahir'),
-                TextInput::make('ktp_image_file'),
+                FileUpload::make('ktp_image_file')->image(),
             ]);
     }
 
@@ -72,6 +74,15 @@ class PersonalIdentityResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if (isset($data['ktp_image_file']) && $data['ktp_image_file'] instanceof UploadedFile) {
+            $data['ktp_image_file'] = $data['ktp_image_file']->store('ktp_images', 'public');
+        }
+
+        return $data;
     }
 
     public static function getRelations(): array

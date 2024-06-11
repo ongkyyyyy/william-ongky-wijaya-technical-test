@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('status_perkawinan')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('tempat_lahir')->nullable();
-            $table->json('ktp_image_file')->nullable();
+            $table->string('ktp_image_file')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();
         });

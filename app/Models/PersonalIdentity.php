@@ -36,7 +36,7 @@ class PersonalIdentity extends Model
     ];
 
     protected $casts = [
-        'ktp_image_file' => 'array',
+        'ktp_image_file' => 'string',
         'verified_at' => 'datetime',
         'tanggal_lahir' => 'date',
     ];

@@ -2,8 +2,8 @@
 
 namespace App\Filament\User\Resources;
 
-use App\Models\Logs;
 use Filament\Forms;
+use App\Models\Logs;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -13,6 +13,8 @@ use Filament\Forms\Components\Card;
 use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\User\Resources\PersonalIdentityResource\Pages;
@@ -55,7 +57,7 @@ class PersonalIdentityResource extends Resource
                         TextInput::make('rt_rw'),
                         TextInput::make('status_perkawinan'),
                         TextInput::make('tanggal_lahir'),
-                        TextInput::make('ktp_image_file'),
+                        FileUpload::make('ktp_image_file')->image(),
                     ])
                     ->columns(2),
             ]);
@@ -88,6 +90,15 @@ class PersonalIdentityResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if (isset($data['ktp_image_file']) && $data['ktp_image_file'] instanceof UploadedFile) {
+            $data['ktp_image_file'] = $data['ktp_image_file']->store('ktp_images', 'public');
+        }
+
+        return $data;
     }
 
     public static function getRelations(): array
