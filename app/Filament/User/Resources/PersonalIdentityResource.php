@@ -2,6 +2,7 @@
 
 namespace App\Filament\User\Resources;
 
+use App\Models\Logs;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;

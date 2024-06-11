@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PersonalIdentity extends Model
 {
@@ -43,6 +44,16 @@ class PersonalIdentity extends Model
     public function user() : belongsTo
     {
         return $this->belongsTo(User::class, 'users_id');
+    }
+
+    protected static function booted()
+    {
+        static::updated(function ($personalIdentity) {
+            Logs::create([
+                'users_id' => Auth::id(),
+                'action' => 'Updated profile',
+            ]);
+        });
     }
 
 }
