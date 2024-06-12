@@ -21,7 +21,7 @@ class PersonalIdentityResource extends Resource
 {
     protected static ?string $model = PersonalIdentity::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     public static function form(Form $form): Form
     {
@@ -53,6 +53,7 @@ class PersonalIdentityResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('users_id')->sortable()->searchable(),
+                TextColumn::make('user.name'),
                 TextColumn::make('agama'),
                 TextColumn::make('alamat'),
                 TextColumn::make('berlaku_hingga'),

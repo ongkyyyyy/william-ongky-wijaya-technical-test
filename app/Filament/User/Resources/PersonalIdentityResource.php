@@ -24,7 +24,7 @@ class PersonalIdentityResource extends Resource
 {
     protected static ?string $model = PersonalIdentity::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     public static function userHasPersonalIdentity(): bool
     {

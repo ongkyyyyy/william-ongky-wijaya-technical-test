@@ -20,7 +20,7 @@ class UserAccessesResource extends Resource
 {
     protected static ?string $model = UserAccesses::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-link';
 
     public static function form(Form $form): Form
     {
