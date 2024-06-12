@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Logs extends Model
 {
+    protected $primaryKey = 'log_id';
 
     protected $fillable = [
         'users_id',
@@ -15,7 +16,7 @@ class Logs extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id', 'users_id');
     }
 }
 

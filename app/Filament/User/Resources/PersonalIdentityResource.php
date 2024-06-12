@@ -67,7 +67,7 @@ class PersonalIdentityResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('users_id'),
+                TextColumn::make('nama_ktp'),
                 TextColumn::make('agama'),
                 TextColumn::make('alamat'),
                 TextColumn::make('berlaku_hingga'),

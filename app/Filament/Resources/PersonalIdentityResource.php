@@ -8,8 +8,10 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\PersonalIdentity;
 use Filament\Resources\Resource;
-use Forms\Components\FileUpload;
 use Illuminate\Http\UploadedFile;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PersonalIdentityResource\Pages;
@@ -25,7 +27,7 @@ class PersonalIdentityResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('users_id')->default($userId),
+                TextInput::make('users_id'),
                 TextInput::make('agama'),
                 TextInput::make('alamat'),
                 TextInput::make('berlaku_hingga'),
@@ -50,7 +52,7 @@ class PersonalIdentityResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')->sortable()->searchable(),
+                TextColumn::make('users_id')->sortable()->searchable(),
                 TextColumn::make('agama'),
                 TextColumn::make('alamat'),
                 TextColumn::make('berlaku_hingga'),
